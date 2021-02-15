@@ -1,8 +1,7 @@
-# Advent of Code Clojure Starter
+# Advent of Code 2020 in Clojure
 
-A batteries included starter pack for participating in [Advent of Code](https://www.adventofcode.com) using Clojure!
-
-(This projects uses [lein](https://github.com/technomancy/leiningen)).
+My solutions for [Advent of Code](https://www.adventofcode.com) 2020 using Clojure.
+Template copied from [Advent of Code Clojure Starter](https://github.com/mhanberg/advent-of-code-clojure-starter).
 
 ## Usage
 
@@ -39,16 +38,4 @@ There are 25 namespaces, 25 input files 25 example input files, 25 tests, and 50
 (deftest part2
   (let [expected nil]
     (is (= expected (part-2 (slurp (resource "day-1-example.txt")))))))
-```
-
-## Installation
-
-```bash
-# clone
-$ git clone git@github.com:mhanberg/advent-of-code-clojure-starter.git advent-of-code
-$ cd advent-of-code
-
-# Reinitialize your git repo
-$ rm -rf .git
-$ git init
 ```
