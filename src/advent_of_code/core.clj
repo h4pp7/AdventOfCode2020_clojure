@@ -26,6 +26,7 @@
             [advent-of-code.day-25]))
 
 (defn read-input
+  "reads the file and returns its content as a string"
   [day]
   (slurp (clojure.java.io/resource day)))
 
