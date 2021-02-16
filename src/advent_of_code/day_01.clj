@@ -17,17 +17,17 @@
 (defn part-1
   "Day 01 Part 1"
   [input]
-  (def data (parse-input input))
-  (first
-    (for [a data, b data
-          :when (= 2020 (+ a b))]
-      (* a b))))
+  (let [data (parse-input input)]
+    (first
+      (for [a data, b data
+            :when (= 2020 (+ a b))]
+        (* a b)))))
 
 (defn part-2
   "Day 01 Part 2"
   [input]
-  (def data (parse-input input))
-  (first
-    (for [a data, b data, c data
-          :when (= 2020 (+ a b c))]
-      (* a b c))))
+  (let [data (parse-input input)]
+    (first
+      (for [a data, b data, c data
+            :when (= 2020 (+ a b c))]
+        (* a b c)))))
