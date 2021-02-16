@@ -1,4 +1,6 @@
-(ns advent-of-code.day-07)
+(ns advent-of-code.day-07
+  "AOC 2020 Day 7"
+  (:require [advent-of-code.util :refer [split-lines]]))
 
 (defn part-1
   "Day 07 Part 1"

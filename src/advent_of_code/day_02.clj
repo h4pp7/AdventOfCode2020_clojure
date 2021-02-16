@@ -1,18 +1,6 @@
 (ns advent-of-code.day-02
-   "AOC 2020 Day 2"
-  (:require
-    [clojure.java.io :refer [reader]])
-  (:require
-    [clojure.string :as string])
-  (:gen-class))
-
-(defn split-lines
-  "parses the input into a vector of ints"
-  [input]
-  (let [data (-> input
-               	 string/trim
-                 (#(string/split % #"\n")))]
-    data))
+  "AOC 2020 Day 2"
+  (:require [advent-of-code.util :refer [split-lines]]))
 
 (defn parse-line
   [line]
@@ -24,13 +12,15 @@
         pw (re-find l-matcher)]
     [min-num max-num letter pw]))
 
-(defn isvalid-p1 [[min-num max-num letter pw]]
+(defn isvalid-p1 
+  [[min-num max-num letter pw]]
   (<= min-num (count (re-seq (re-pattern letter) pw)) max-num))
 
-(defn isvalid-p2 [[min-num max-num letter pw]]
-  (let [l (.charAt letter 0)
-        c1 (.charAt pw (- min-num 1))
-        c2 (.charAt pw (- max-num 1))]
+(defn isvalid-p2 
+  [[min-num max-num letter pw]]
+  (let [l (first letter)
+        c1 (nth pw (- min-num 1))
+        c2 (nth pw (- max-num 1))]
     (and (or (= l c1) (= l c2)) (not (and (= l c1) (= l c2))))))
 
 (defn part-1

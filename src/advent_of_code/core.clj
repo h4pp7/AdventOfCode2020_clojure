@@ -1,5 +1,6 @@
 (ns advent-of-code.core
-  (:require [advent-of-code.day-01]
+  (:require [advent-of-code.util :refer [read-input split-lines]]
+            [advent-of-code.day-01]
             [advent-of-code.day-02]
             [advent-of-code.day-03]
             [advent-of-code.day-04]
@@ -24,11 +25,6 @@
             [advent-of-code.day-23]
             [advent-of-code.day-24]
             [advent-of-code.day-25]))
-
-(defn read-input
-  "reads the file and returns its content as a string"
-  [day]
-  (slurp (clojure.java.io/resource day)))
 
 (defn -main
   "Used to dispatch tasks from the command line.

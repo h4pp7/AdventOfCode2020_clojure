@@ -1,18 +1,13 @@
 (ns advent-of-code.day-01
-   "AOC 2020 Day 1"
-  (:require
-    [clojure.java.io :refer [reader]])
-  (:require
-    [clojure.string :as string])
-  (:gen-class))
+  "AOC 2020 Day 1"
+  (:require [advent-of-code.util :refer [split-lines]]))
 
 (defn parse-input
   "parses the input into a vector of ints"
   [input]
-  (let [data (-> input
-               	 string/trim
-                 (#(string/split % #"\n")))]
-    (map #(Integer/parseInt %) data)))
+  (->> input
+       split-lines
+       (map #(Integer/parseInt %))))
 
 (defn part-1
   "Day 01 Part 1"
