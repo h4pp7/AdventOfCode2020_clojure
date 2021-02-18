@@ -2,25 +2,36 @@
   "AOC 2020 Day 3"
   (:require [advent-of-code.util :refer [split-lines]]))
 
-; TODO do it with map instead of a loop?
-
-(comment
 (defn traverse
-  [treemap start slope obstacle]
+  [terrain start slope obstacle]
   (loop [x start
          y 0
          hits 0]
-    (if (> y (- (count treemap) 1))
+    (if (> y (- (count terrain) 1))
       hits
-      (recur (mod (+ x (slope 0)) (count (treemap y)))
+      (recur (mod (+ x (slope 0)) (count (terrain y)))
              (+ y (slope 1))
-             (+ hits (if (= (nth (treemap y) x) obstacle) 1 0))))))
-)
+             (+ hits (if (= (nth (terrain y) x) obstacle) 1 0))))))
+
+(comment 
+  this non-loop version runs much slower than the loop
+(defn step-right
+  [row distance start]
+  (nth (row 1)
+       (+ start 
+          (mod (* distance (row 0))
+               (count (row 1))))))
 
 (defn traverse
-  [treemap start slope obstacle]
-    ; map-index --> filter x --> x mit wrap
-  (let [rows (take-nth treemap (slope 1))]
+  [terrain start slope obstacle]
+  (let [right (slope 0)
+        down (slope 1)
+        rows (map vector (range) (take-nth down terrain))]
+    (->> rows
+         (map #(step-right % right start))
+         (filter #(= obstacle %))
+         (count))))
+)
 
 (defn part-1
   "Day 03 Part 1"
@@ -31,5 +42,5 @@
   "Day 03 Part 2"
   [input]
   (let [slopes [[1 1] [3 1] [5 1] [7 1] [1 2]]
-        treemap (split-lines input)]
-    (reduce * (map #(traverse treemap 0 % \#) slopes))))
+        terrain (split-lines input)]
+    (reduce * (map #(traverse terrain 0 % \#) slopes))))
