@@ -21,7 +21,8 @@
   (let [l (first letter)
         c1 (nth pw (- min-num 1))
         c2 (nth pw (- max-num 1))]
-    (and (or (= l c1) (= l c2)) (not (and (= l c1) (= l c2))))))
+    (and (or (= l c1) (= l c2)) 
+         (not (and (= l c1) (= l c2))))))
 
 (defn part-1
   "Day 02 Part 1"

@@ -4,6 +4,7 @@
 
 ; TODO do it with map instead of a loop?
 
+(comment
 (defn traverse
   [treemap start slope obstacle]
   (loop [x start
@@ -14,6 +15,12 @@
       (recur (mod (+ x (slope 0)) (count (treemap y)))
              (+ y (slope 1))
              (+ hits (if (= (nth (treemap y) x) obstacle) 1 0))))))
+)
+
+(defn traverse
+  [treemap start slope obstacle]
+    ; map-index --> filter x --> x mit wrap
+  (let [rows (take-nth treemap (slope 1))]
 
 (defn part-1
   "Day 03 Part 1"

@@ -12,3 +12,10 @@
   (-> input
       clojure.string/trim
       (#(clojure.string/split % #"\n"))))
+
+(defn split-p
+  "splits a str at double linebreak into a vector strings"
+  [input]
+  (-> input
+      clojure.string/trim
+      (#(clojure.string/split % #"\n\n"))))
