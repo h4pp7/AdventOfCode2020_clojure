@@ -11,27 +11,25 @@
       hits
       (recur (mod (+ x (slope 0)) (count (terrain y)))
              (+ y (slope 1))
-             (+ hits (if (= (nth (terrain y) x) obstacle) 1 0))))))
+             (if (= (nth (terrain y) x) obstacle) (inc hits) hits)))))
 
-(comment 
-  this non-loop version runs much slower than the loop
-(defn step-right
-  [row distance start]
-  (nth (row 1)
-       (+ start 
-          (mod (* distance (row 0))
-               (count (row 1))))))
-
-(defn traverse
-  [terrain start slope obstacle]
-  (let [right (slope 0)
-        down (slope 1)
-        rows (map vector (range) (take-nth down terrain))]
-    (->> rows
-         (map #(step-right % right start))
-         (filter #(= obstacle %))
-         (count))))
-)
+;;  this non-loop version runs much slower than the loop
+;(defn step-right
+;  [row distance start]
+;  (nth (row 1)
+;       (+ start 
+;          (mod (* distance (row 0))
+;               (count (row 1))))))
+;
+;(defn traverse
+;  [terrain start slope obstacle]
+;  (let [right (slope 0)
+;        down (slope 1)
+;        rows (map vector (range) (take-nth down terrain))]
+;    (->> rows
+;         (map #(step-right % right start))
+;         (filter #(= obstacle %))
+;         (count))))
 
 (defn part-1
   "Day 03 Part 1"

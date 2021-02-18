@@ -1,5 +1,6 @@
 (ns advent-of-code.core
   (:require [advent-of-code.util :refer [read-input split-lines]]
+            [criterium.core]
             [advent-of-code.day-01]
             [advent-of-code.day-02]
             [advent-of-code.day-03]

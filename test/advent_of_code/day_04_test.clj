@@ -8,5 +8,5 @@
     (is (= expected (part-1 (slurp (resource "day-04-example.txt")))))))
 
 (deftest part2
-  (let [expected nil]
-    (is (= expected (part-2 (slurp (resource "day-04-example.txt")))))))
+  (let [expected 4]
+    (is (= expected (part-2 (slurp (resource "day-04-example2.txt")))))))

@@ -16,7 +16,15 @@ You can check whether a value lies in a range with
 
 ### Day 3
 Made two version, one with a loop the other with mapping and filtering over the
-rows. Why is the loop much faster?
+rows. The recursive loop is way faster than the non-loop version.
+
+### Day 4
+Instead of doing the validation of the fields all with regex like in [my Julia
+solution](https://git.sr.ht/~happy/AdventOfCode2020.jl/tree/main/item/src/Day04.jl),
+I used this puzzle to learn how to construct maps. Part 1 is just checking
+whether a key exists. Part 2 uses helper predicate functions for the fields.
+`Cond` and `Condp` is used to check the fields and stop on the first invalid
+field. Not 100% sure `cond` is more appropriate here than `case`.
 
 ## Usage
 ### Writing the solutions
