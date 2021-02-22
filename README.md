@@ -26,6 +26,12 @@ whether a key exists. Part 2 uses helper predicate functions for the fields.
 `Cond` and `Condp` is used to check the fields and stop on the first invalid
 field. Not 100% sure `cond` is more appropriate here than `case`.
 
+### Day 5
+Parse seat numbers by replacing "B" and "R" with "1" and "F" and "L" with "0".
+Then parse the string to number. For part 2, subtract the sum of all the seat
+numbers from the sum of all numbers from the minimum seat number to the maximum
+seat number.
+
 ## Usage
 ### Writing the solutions
 There are 25 namespaces, 25 input files 25 example input files, 25 tests, and

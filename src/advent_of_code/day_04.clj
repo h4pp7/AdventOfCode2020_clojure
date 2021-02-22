@@ -30,15 +30,8 @@
 (defn hcl? [p] (not (nil? (re-matches #"#([0-9]|[a-f]){6}" (:hcl p))))) 
 (defn ecl? 
   [p] 
-  (condp = (:ecl p)
-    "amb" true
-    "blu" true
-    "brn" true
-    "gry" true
-    "grn" true
-    "hzl" true
-    "oth" true
-    false))
+  (contains? #{"amb" "blu" "brn" "gry" "grn" "hzl" "oth"} 
+             (:ecl p)))
 (defn pid? [p] (not (nil? (re-matches #"[0-9]{9}" (:pid p)))))
 
 (defn valid?
