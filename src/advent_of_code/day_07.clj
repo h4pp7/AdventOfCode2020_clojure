@@ -2,16 +2,6 @@
   "AOC 2020 Day 7"
   (:require [advent-of-code.util :refer [split-lines]]))
 
-(defn part-1
-  "Day 07 Part 1"
-  [input]
-  input)
-
-(defn part-2
-  "Day 07 Part 2"
-  [input]
-  input)
-
 (defn parse-line
   [line]
   [(re-find #"^\w*\s\w*(?=\sbag)" line)
@@ -36,24 +26,25 @@
   
 (defn parse-line-to-map
   [line graph]
-  (let [line (parse-line line)
-        outer-bag (trimmed-keyword (line 0))
-        graph (add-node graph outer-bag)
+  (let [line       (parse-line line)
+        outer-bag  (trimmed-keyword (line 0))
+        graph      (add-node graph outer-bag)
         inner-bags (line 1)
-        mapper (fn 
-                 [graph bag]
-                 (add-edge graph 
-                           outer-bag 
-                           (trimmed-keyword (bag 0)) 
-                           (bag 1)))]
+        mapper     (fn 
+                     [graph bag]
+                     (add-edge graph 
+                               (trimmed-keyword (bag 0)) 
+                               outer-bag 
+                               (bag 1)))]
     (loop [inner-bags inner-bags
-           graph graph]
+           graph      graph]
       (if (empty? inner-bags)
         graph
         (recur (rest inner-bags)
                (mapper graph (first inner-bags)))))))
 
-(defn build-graph
+(defn build-adj-list
+  "Constructs an adjacency list. Bags mapped to their containers."
   [lines]
   (loop [lines lines
          graph nil]
@@ -61,3 +52,36 @@
       graph
       (recur (rest lines)
              (parse-line-to-map (first lines) graph)))))
+
+(defn visited? [node visited] (some #(= % node) visited))
+
+(defn graph-dfs
+  "Depth First Search"
+  [node graph] 
+  (loop [stack   (vector node)
+         visited []]
+    (if (empty? stack) 
+      visited
+      (let [node       (peek stack)
+            neighbours (keys (node graph))
+            new-stack  (->> neighbours
+                            (filter (complement #(visited? % visited)))
+                            (into (pop stack)))]
+        (if (visited? node visited)
+          (recur new-stack visited)
+          (recur new-stack (conj visited node)))))))
+
+(defn part-1
+  "Day 07 Part 1"
+  [input]
+  (->> input
+       (split-lines)
+       (build-adj-list)
+       (graph-dfs :shiny-gold)
+       (count)
+       (dec)))
+
+(defn part-2
+  "Day 07 Part 2"
+  [input]
+  input)
